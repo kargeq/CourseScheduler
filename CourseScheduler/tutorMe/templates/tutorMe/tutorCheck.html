@@ -1,0 +1,36 @@
+{% load static %}
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+<link href="{% static 'tutorMe/auth.css' %}" rel="stylesheet">
+
+<div class="form-center">
+    <form class="border border-secondary rounded mb-3">
+        {% csrf_token %}
+        <div class="title p-3">
+            <p class="font-weight-bold"> Are you a tutor or student? </p>
+        </div>
+        <div class="row">
+
+            <div class="select col p-5">
+                <a class="card text-center stretched-link  text-decoration-none border border-secondary" href="/tutor/">
+                    <img mw-100 alt="Tutor :)" class="card-img-top" src="/static/tutorMe/images/icons8-teacher-100.png">
+                    <div class="card-body">
+                        <h5 class="card-title text-dark"> Tutor </h5>
+                    </div>
+                </a>
+            </div>
+
+            <div class="select col p-5">
+                <a class="card text-center stretched-link text-decoration-none border border-secondary" href="/student/">
+                    <img mw-100 alt="Student :)" class="card-img-top" src="/static/tutorMe/images/icons8-student-96.png">
+                    <div class="card-body">
+                        <h5 class="card-title text-dark"> Student </h5>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+    </form>
+</div>

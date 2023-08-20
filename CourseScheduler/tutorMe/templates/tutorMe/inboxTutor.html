@@ -1,0 +1,56 @@
+<head>
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+</head>
+
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% bootstrap_messages %}
+{% load static %}
+<link href="{% static 'tutorMe/inbox.css' %}" rel="stylesheet">
+
+{% include "nav.html" %}
+
+<div class="container" style="font-family: 'Inter', sans-serif;">
+
+
+    <h1 class="m-3"> Notifications </h1>
+
+    {% if not msgs %}
+    <h3 style="color:dodgerblue"> You have no notifications</h3>
+    {% endif %}
+
+    {% for msg in msgs %}
+    <div style="margin-bottom:3.5rem">
+
+            {% if msg.0 == "Canceled" %}
+        <div class="card mb-3 shadow">
+            <div class="card-header text-white bg-danger">
+                Important! Cancellation status <i class="fa fa-times-circle"></i>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title"> Your appointment for {{ msg.2 }}
+                    tutoring with {{msg.1}} has been canceled! </h5>
+                <p class="d-flex card-text">
+                    <small class="text-muted me-auto p-2">
+                        Recieved {{msg.3}}
+                    </small>
+                    <small class="text-muted ms-3 mt-3">
+                        <a href="{% url 'deleteNotifictutor' msg.4  msg.0  msg.2 msg.5 %}"><i class="fa fa-trash-o"></i></a>
+                    </small>
+                </p>
+            </div>
+
+            {% endif %}
+        </div>
+
+    </div>
+    {% endfor %}
+
+</div>
+
+{% include "footer.html" %}

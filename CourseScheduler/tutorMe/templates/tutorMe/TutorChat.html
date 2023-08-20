@@ -1,0 +1,79 @@
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% load static %}
+<link href="{% static 'tutorMe/chat.css' %}" rel="stylesheet">
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+{% include "nav.html" %}
+
+{% block content %}
+    <div class="container">
+        <h1 class="text-center mb-4">Message {{ other_user }} </h1>
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="messages">
+                    {% for message in messages %}
+                        {% if message.sender == user %}
+                            <div class="message sent">
+                                <div class="chat-box chat-sent">
+                                    <span class="sender">{{ message.sender }}: </span>
+                                    <span class="content">{{ message.content }}</span>
+                                </div>
+                            </div>
+                        {% else %}
+                            <div class="message received">
+                                <div class="chat-box chat-received">
+                                    <span class="receiver">{{ message.sender }}: </span>
+                                    <span class="content">{{ message.content }}</span>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <form method="post" class="mt-4">
+                    {% csrf_token %}
+                    <div class="input-group">
+                        <input type="text" name="content" class="form-control">
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-send-o"></i></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+<style>
+    .chat-box {
+        display: inline-block;
+        padding: 10px;
+        border-radius: 10px;
+        margin: 5px;
+    }
+
+    .chat-sent {
+        background-color: #E5F5FA;
+    }
+
+    .chat-received {
+        background-color: #F8F8F8;
+    }
+
+    .message {
+        display: flex;
+    }
+
+    .message.sent {
+        justify-content: flex-end;
+    }
+
+    .sender {
+        font-weight: bold;
+        margin-right: 5px;
+    }
+
+    form {
+        margin-top: 20px;
+    }
+</style>

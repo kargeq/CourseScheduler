@@ -1,0 +1,64 @@
+<!DOCTYPE Html>
+<html>
+<title>Welcome Tutor</title>
+<head>
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+</head>
+
+
+<body>
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+
+{% bootstrap_messages %}
+{% include "navStudent.html" %}
+
+{% if not list %}
+
+<h1>No Tutors Found!</h1>
+{% endif %}
+
+<div class="container" style="font-family: 'Inter', sans-serif;">
+    <h5 class="text-center pt-5 pb-3" style="font-weight: bold;">
+        Currently Available Tutors
+    </h5>
+    {% for tutor in list %}
+    <div class="card m-3" style="background-color: whitesmoke">
+
+        <div class="card-body">
+            <h3 class="card-title">
+                {{tutor.0}}
+            </h3>
+            <div class="card-subtitle mb-2 text-muted">
+                Rate: ${{tutor.1}}
+            </div>
+            <a class="btn btn-primary position-relative top-0 start-50 translate-middle"
+               href="{% url 'student_make_schedule' tutor.0 name mnemonic%}" role="button"><i
+                    class="fa fa-calendar-o"> </i> &emsp;
+                Schedule Meeting Times</a>
+        </div>
+    </div>
+    {% endfor %}
+
+    <form action="/tutorMe/student" method="get">
+        {% csrf_token %}
+        <div class="p-3 position-relative start-50 translate-middle">
+            <button class="btn btn-secondary" type="submit"><i class="fa fa-chevron-left"></i> &emsp; Go back to Search
+            </button>
+        </div>
+    </form>
+</div>
+
+
+{% include "footer.html" %}
+
+
+</body>
+
+</html>

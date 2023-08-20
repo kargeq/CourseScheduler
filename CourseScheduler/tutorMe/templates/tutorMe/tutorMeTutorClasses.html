@@ -1,0 +1,86 @@
+<html>
+<head>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+</head>
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% bootstrap_messages %}
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+{% include "nav.html" %}
+
+<form class="form" method="POST">
+    {% csrf_token %}
+    <div class="form-group mb-3 p-5">
+        <label class="form-label" for="searchBar">Find the class you want to tutor!</label>
+        <div class="input-group mb-3">
+            <input aria-describedby="searchBtn" class="form-control" formmethod="POST" id="searchBar"
+                   name="searchBar"
+                   placeholder="Search for classes..." style="max-width: 50%; text-align: center" type="search">
+
+                   <button class="btn btn-primary" style="border-top-right-radius:20px;
+                      border-bottom-right-radius:20px;" type="submit"><i class="fa fa-search"></i></button>
+        </div>
+
+        {% if not searchResults %}
+        <h1>No classes match your current search!</h1>
+        {%else%}
+
+        <div class="list-group p-3">
+
+            {% for result in searchResults %}
+            <div class="card p-3 mt-3" style="max-width: 50%">
+                <div class="card-header">
+                    {{result.0}} {{result.2}}
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{result.1}}</h5>
+                    <button class="btn btn-primary mt-1" data-bs-target="#confirm{{ forloop.counter }}"
+                            data-bs-toggle="modal" style="font-weight: bold"
+                            type="button"> Add
+                    </button>
+
+                    <div aria-hidden="true" aria-labelledby="confirm{{ forloop.counter }}" class="modal fade"
+                         data-bs-backdrop="false" id="confirm{{ forloop.counter }}"
+                         tabindex="0">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="confirm" style="color:black;">Add
+                                        {{result.0}} {{result.2}}</h5>
+                                    <button aria-label="Close" class="btn-close" data-bs-dismiss="modal"
+
+                                            type="button"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <h6 style="color:black">Are you sure you want to tutor {{result.1}}
+                                        {{result.2}}</h6>
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-danger" data-bs-dismiss="modal" type="button">Cancel
+                                    </button>
+
+
+                                    <a class="btn btn-primary mt-1"
+                                       href="{% url 'add_item' result.0 result.1 result.2 %}"
+                                       style="font-weight: bold">CONFIRM</a>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+</form>
+
+{% include "footer.html" %}
+
+</html>

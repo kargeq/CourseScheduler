@@ -1,0 +1,16 @@
+.table td, .table th {
+    text-align: center;
+}
+
+input {
+    width: 100%;
+    height: 100%;
+    background-color: green;
+    color: green;
+    border: none;
+    cursor: pointer;
+}
+
+input[name="checkbox"]:disabled {
+    background-color: lightcoral;
+}

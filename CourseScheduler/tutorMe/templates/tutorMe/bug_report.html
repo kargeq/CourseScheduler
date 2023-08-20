@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% bootstrap_messages %}
+    	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <meta charset="UTF-8">
+    <title>Bug Report</title>
+</head>
+
+{% if name.is_tutor %}
+{% include "nav.html" %}
+{% else %}
+{% include "navStudent.html" %}
+{% endif %}
+
+
+<form action="/tutorMe/reportBug" method="post" class="form">
+  {% csrf_token %}
+
+  {% bootstrap_form form %}
+    <div class="d-flex justify-content-center">
+  {% bootstrap_button button_type="submit" content="Submit" %}
+        </div>
+
+</form>
+
+<body>
+
+</body>
+</html>

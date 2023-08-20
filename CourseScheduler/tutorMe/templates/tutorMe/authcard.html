@@ -1,0 +1,38 @@
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.4.4/cjs/popper.min.js" rel="stylesheet">
+</head>
+
+{% load static %}
+{% load socialaccount %}
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+<link href="{% static 'tutorMe/auth.css' %}" rel="stylesheet">
+
+<div class="form-center">
+    <form class="border border-secondary rounded mb-3 shadow-lg">
+        {% csrf_token %}
+        <div class="title">
+            <p class="font-weight-bold" style="font-family: 'Inter', sans-serif;"> Sign in to TutorMe </p>
+                    <img alt=":-)" class="img-fluid" src="/static/tutorMe/images/logo.png" style="max-width:50%;">
+
+        </div>
+
+        <div class="form-group col">
+            <div class="row-xs-3 p-3">
+
+                <a aria-pressed="true" class="btn btn-outline-primary rounded-pill p-2"
+                   href="{% provider_login_url 'google' %}" type="submit">
+                    <text> &emsp;</text>
+                    <img alt=" &emsp;  Sign in with Google &emsp;" class="img-fluid"
+                         src="/static/tutorMe/images/google_G.png">
+                    <text style="font-family: 'Inter', sans-serif;"> &emsp; Sign in with Google &emsp; &emsp;</text>
+                </a>
+            </div>
+        </div>
+    </form>
+</div>

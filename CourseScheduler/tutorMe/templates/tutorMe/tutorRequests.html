@@ -1,0 +1,107 @@
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% bootstrap_messages %}
+{% load static %}
+
+<head>
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+          rel="stylesheet">
+    <link href="{% static 'tutorMe/apointment.css' %}" rel="stylesheet">
+
+    <title>Tutor Requests</title>
+</head>
+
+    {% include "nav.html" %}
+
+    <div class="container" style="font-family: 'Inter', sans-serif;">
+
+    <h5 class="text-center pt-5 pb-3" style="font-weight: bold;">
+        Pending Requests
+    </h5>
+</div>
+    <table class="table table-bordered table-striped table-hover">
+        <thead>
+        <tr>
+            <th scope="col">Class Name</th>
+            <th scope="col">Student Name</th>
+            <th scope="col">Monday</th>
+            <th scope="col">Tuesday</th>
+            <th scope="col">Wednesday</th>
+            <th scope="col">Thursday</th>
+            <th scope="col">Friday</th>
+            <th scope="col">Saturday</th>
+            <th scope="col">Sunday</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for schedule in list %}
+        <tr>
+            <td>{{ schedule.0 }}</td>
+            <td>
+                <div class="container">
+                    <div class="col p-2">
+                        <div class="col p-2">
+                            {{ schedule.2 }}
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <form action="{% url 'accepted' schedule.0 schedule.1 schedule.2 %}" method="POST">
+                                    {% csrf_token %}
+                                    <button class="btn btn-primary" type="submit">Accept <i
+                                            class="fa fa-check-circle-o"> </i></button>
+                                </form>
+                            </div>
+                            <div class="col">
+                                <form action="{% url 'delete_request' schedule.0 schedule.1 schedule.2 %}"
+                                      method="POST">
+                                    {% csrf_token %}
+                                    <button class="btn btn-danger" type="submit">Reject <i class="fa fa-ban"> </i>
+                                    </button>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td> {% for times in schedule.3 %}
+                {{ times }}
+                {% endfor %}
+            </td>
+            <td> {% for times in schedule.4 %}
+                {{ times }}
+                {% endfor %}
+            </td>
+            <td> {% for times in schedule.5 %}
+                {{ times }}
+                {% endfor %}
+            </td>
+            <td> {% for times in schedule.6 %}
+                {{ times }}
+                {% endfor %}
+            </td>
+            <td> {% for times in schedule.7 %}
+                {{ times }}
+                {% endfor %}
+            </td>
+            <td> {% for times in schedule.8 %}
+                {{ times }}
+                {% endfor %}
+            </td>
+            <td> {% for times in schedule.9 %}
+                {{ times }}
+                {% endfor %}
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    </div>
+    {% include "footer.html" %}
+
+

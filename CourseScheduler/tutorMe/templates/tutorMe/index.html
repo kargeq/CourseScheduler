@@ -1,0 +1,31 @@
+<!DOCTYPE Html>
+<html>
+<title>TutorMe</title>
+<head>
+	
+
+</head>
+
+
+<body>
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{% load static %}
+
+<link href="{% static 'tutorMe/auth.css' %}" rel="stylesheet">
+
+
+
+{% bootstrap_messages %}
+
+{% include "authcard.html" %}
+
+
+{% include "footer.html" %}
+
+
+</body>
+
+</html>

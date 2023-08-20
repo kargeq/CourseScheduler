@@ -1,0 +1,110 @@
+<head>
+
+    <title>tutorNav</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+</head>
+
+
+<nav class="navbar shadow navbar-expand-lg navbar-light" style="background-color:white;  font-family: 'Inter', sans-serif;">
+
+{% if messages %}
+        {% for message in messages %}
+            <span {% if message.tags %} class="{{ message.tags }}" style="border-bottom:0.2rem;" {% endif %}></span>
+        {% endfor %}
+{% endif %}
+
+
+    <div class="container-fluid" >
+        <a class="navbar-brand" href="/tutorMe/tutor">
+            <img alt="TutorMe" src="/static/tutorMe/images/logo.png" style="max-width:25%;">
+        </a>
+
+        <div class="navbar-nav d-flex justify-content-between flex-fill" >
+            <ul class="navbar-nav flex-fill" style="margin-left:-22em">
+
+                <li class="nav-item active flex-fill " >
+                    <a class="nav-link" href="/tutorMe/tutor/classes/list"><i class="fa fa-home"></i>&emsp; My Classes</a>
+                </li>
+                <li class="nav-item flex-fill " >
+                    <a class="nav-link" href="/tutorMe/tutor/requests"><i class="fa fa-tasks"></i>&emsp; Requests</a>
+                </li>
+                <li class="nav-item flex-fill ">
+                    <a class="nav-link" href="/tutorMe/tutor/inbox">
+                        <i class="fa fa-envelope"></i>&emsp;
+                        Inbox</a>
+
+                </li>
+                <li class="nav-item flex-fill " >
+                    <a class="nav-link " href="/tutorMe/tutor/appointments"><i class="fa fa-calendar"></i>&emsp; Scheduled Appointments</a>
+                </li>
+
+                <li class="nav-item flex-fill " >
+                    <a class="nav-link " href="/tutorMe/tutor"><i class="fa fa-search-plus"></i>&emsp; Search Classes</a>
+                </li>
+                <li class="nav-item active flex-fill ">
+                    <a class="nav-link " href="{% url 'Tutor_chat_list' %}"><i class="fa fa-comments"></i>&emsp; Chat </a>
+
+                </li>
+                    </ul>
+
+
+
+            <div class="dropdown dropdown-menu-end dropdown-menu-lg-start" style="margin-left:8em; margin-right:11em">
+                {% load socialaccount %}
+                {% if user.is_authenticated %}
+                <button aria-expanded="false" class="btn rounded-circle" data-bs-toggle="dropdown"
+                        id="options"
+                        style="max-width: 50%;" type="button">
+                    <img alt="T" class="img-fluid rounded-circle"
+                         src="{{ user.socialaccount_set.all.0.get_avatar_url }}">
+                </button>
+                <ul aria-labelledby="options" class="dropdown-menu">
+                    <li><a class="dropdown-item disabled">
+                        <div class="container">
+                            <div class="row">
+                                <!-- <img alt="T" class="img-fluid rounded-circle"
+                                     src="{{ user.socialaccount_set.all.0.get_avatar_url }}"
+                                     style="max-width: 50%;"> -->
+                                <div class="col-xs-2">
+                                    <div class="row"
+                                         style="font-family: 'Inter', sans-serif; font-weight: bold; color: black;">
+                                        {{ user.socialaccount_set.all.0.extra_data.name }}
+                                    </div>
+                                    <div class="row" style="font-family: 'Inter', sans-serif;">
+                                        {{ user.socialaccount_set.all.0.extra_data.email}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a></li>
+
+                    <li><a class="dropdown-item disabled">
+                        <hr/>
+                    </a></li>
+
+                    <li><a class="dropdown-item" href="/tutorMe/tutor/profile" style="font-family: 'Inter', sans-serif;"><i class="fa fa-user"></i>&emsp; Profile</a></li>
+                    <li><a class="dropdown-item" href="/tutorMe/logout" style="font-family: 'Inter', sans-serif;"><i class="fa fa-sign-out"></i>&emsp; Sign
+
+                        Out</a></li>
+                    <li><a class="dropdown-item" href="/tutorMe/reportBug" style="font-family: 'Inter', sans-serif;"><i class="fa fa-bug"></i>&emsp; Report a Bug</a>
+
+                    </li>
+                </ul>
+                {% else %}
+                <ul aria-labelledby="options" class="dropdown-menu">
+                    <li><a class="dropdown-item" href="{% provider_login_url 'google' %}"><i class="fa fa-sign-in"></i>&emsp; Sign In</a></li>
+                </ul>
+                {% endif %}
+            </div>
+
+
+        </div>
+
+    </div>
+</nav>
+
+

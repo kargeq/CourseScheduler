@@ -1,0 +1,213 @@
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% bootstrap_messages %}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+{% include "nav.html" %}
+
+<html>
+<head>
+	{% for Class in list %}
+	<title>Weekly Schedule {{Class}} </title>
+	  {% endfor %}
+	<meta charset="utf-8">
+	<meta id="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.6.0/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.6.0/js/bootstrap.min.js"></script>
+	<style>
+		.table td, .table th {
+			text-align: center;
+		}
+
+		input {
+			width: 100%;
+			height: 100%;
+			background-color: #fff;
+			border: none;
+			cursor: pointer;
+		}
+
+		input.clicked {
+			background-color: darkgray;
+		}
+
+		input:hover {
+			background-color: #eee;
+		}
+	</style>
+	<script>
+		function inputClicked(input) {
+		console.log("input clicked");
+			input.classList.add("clicked");
+		}
+
+		function inputSubmit(input) {
+
+
+		}
+	</script>
+</head>
+<form action="{% url 'calendar_times' name %}" method="POST">
+  <div class="form-group">
+	  {% csrf_token %}
+	<body>
+			<div class="container">
+				<h2 class="text-center my-3">Weekly Schedule {{name}} </h2>
+				<table class="table">
+					<thead>
+						<tr>
+							<th scope="col">Time</th>
+							<th scope="col">Monday</th>
+							<th scope="col">Tuesday</th>
+							<th scope="col">Wednesday</th>
+							<th scope="col">Thursday</th>
+							<th scope="col">Friday</th>
+							<th scope="col">Saturday</th>
+							<th scope="col">Sunday</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th scope="row">8:00 am - 9:00 am</th>
+							<td><input name="checkbox" value='m8' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+							<td><input name="checkbox" value='tu8' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+							<td><input name="checkbox" value='w8' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+							<td><input name="checkbox" value='th8' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+							<td><input name="checkbox" value='f8' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+							<td><input name="checkbox" value='sa8' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+							<td><input name="checkbox" value='su8' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+						</tr>
+						<tr>
+							<th scope="row">9:00 am - 10:00 am </th>
+							<td><input name="checkbox" value='m9' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+							<td><input name="checkbox" value='tu9' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+							<td><input name="checkbox" value='w9' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+							<td><input name="checkbox" value='th9' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+							<td><input name="checkbox" value='f9' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+							<td><input name="checkbox" value='sa9' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+							<td><input name="checkbox" value='su9' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+						</tr>
+						<tr>
+							<th scope="row">10:00 am - 11:00 am </th>
+							<td><input name="checkbox" value='m10' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+							<td><input name="checkbox" value='tu10' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+							<td><input name="checkbox" value='w10' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+							<td><input name="checkbox" value='th10' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+							<td><input name="checkbox" value='f10' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+							<td><input name="checkbox" value='sa10' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+							<td><input name="checkbox" value='su10' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+						</tr>
+						<tr>
+							<th scope="row">11:00 am - 12:00 pm </th>
+							<td><input name="checkbox" value='m11' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+							<td><input name="checkbox" value='tu11' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+							<td><input name="checkbox" value='w11' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+							<td><input name="checkbox" value='th11' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+							<td><input name="checkbox" value='f11' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+							<td><input name="checkbox" value='sa11' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+							<td><input name="checkbox" value='su11' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+						</tr>
+						<tr>
+							<th scope="row">12:00 pm - 1:00 pm </th>
+							<td><input name="checkbox" value='m12' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+							<td><input name="checkbox" value='tu12' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+							<td><input name="checkbox" value='w12' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+							<td><input name="checkbox" value='th12' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+							<td><input name="checkbox" value='f12' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+							<td><input name="checkbox" value='sa12' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+							<td><input name="checkbox" value='su12' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+						</tr>
+						<tr>
+							<th scope="row">1:00 pm - 2:00 pm </th>
+							<td><input name="checkbox" value='m1' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+							<td><input name="checkbox" value='tu1' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+							<td><input name="checkbox" value='w1' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+							<td><input name="checkbox" value='th1' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+							<td><input name="checkbox" value='f1' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+							<td><input name="checkbox" value='sa1' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+							<td><input name="checkbox" value='su1' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+						</tr>
+						<tr>
+							<th scope="row">2:00 pm - 3:00 pm </th>
+							<td><input name="checkbox" value='m2' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+							<td><input name="checkbox" value='tu2' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+							<td><input name="checkbox" value='w2' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+							<td><input name="checkbox" value='th2' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+							<td><input name="checkbox" value='f2' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+							<td><input name="checkbox" value='sa2' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+							<td><input name="checkbox" value='su2' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+						</tr>
+						<tr>
+							<th scope="row">3:00 pm - 4:00 pm </th>
+							<td><input name="checkbox" value='m3' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+							<td><input name="checkbox" value='tu3' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+							<td><input name="checkbox" value='w3' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+							<td><input name="checkbox" value='th3' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+							<td><input name="checkbox" value='f3' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+							<td><input name="checkbox" value='sa3' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+							<td><input name="checkbox" value='su3' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+						</tr>
+						<tr>
+							<th scope="row">4:00 pm - 5:00 pm </th>
+							<td><input name="checkbox" value='m4' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+							<td><input name="checkbox" value='tu4' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+							<td><input name="checkbox" value='w4' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+							<td><input name="checkbox" value='th4' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+							<td><input name="checkbox" value='f4' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+							<td><input name="checkbox" value='sa4' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+							<td><input name="checkbox" value='su4' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+						</tr>
+						<tr>
+							<th scope="row">5:00 pm - 6:00 pm </th>
+							<td><input name="checkbox" value='m5' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+							<td><input name="checkbox" value='tu5' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+							<td><input name="checkbox" value='w5' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+							<td><input name="checkbox" value='th5' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+							<td><input name="checkbox" value='f5' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+							<td><input name="checkbox" value='sa5' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+							<td><input name="checkbox" value='su5' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+						</tr>
+						<tr>
+							<th scope="row">6:00 pm - 7:00 pm </th>
+							<td><input name="checkbox" value='m6' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+							<td><input name="checkbox" value='tu6' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+							<td><input name="checkbox" value='w6' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+							<td><input name="checkbox" value='th6' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+							<td><input name="checkbox" value='f6' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+							<td><input name="checkbox" value='sa6' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+							<td><input name="checkbox" value='su6' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+						</tr>
+						<tr>
+							<th scope="row">7:00 pm - 8:00 pm </th>
+							<td><input name="checkbox" value='m7' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+							<td><input name="checkbox" value='tu7' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+							<td><input name="checkbox" value='w7' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+							<td><input name="checkbox" value='th7' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+							<td><input name="checkbox" value='f7' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+							<td><input name="checkbox" value='sa7' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+							<td><input name="checkbox" value='su7' class="form-check" type="checkbox" onclick="inputClicked(this)">Click</input></td>
+						</tr>
+						<!-- add more rows for each hour -->
+					<tr>
+						<div class="input-group input-group-lg">
+							<div class="input-group-prepend">
+								<span class="input-group-text">Input hourly rate: </span>
+							</div>
+								<input type="number" class="form-control" name="inputRate" aria-label="Large" aria-describedby="inputGroup-sizing-sm" min="0" max="1000" required>
+						</div>
+					</tr>
+					</tbody>
+				</table>
+			</div>
+	</body>
+  </div>
+		<div class="container-fluid">
+			<div class = "text-center" >
+				{% csrf_token %}
+				<button type="submit" id="submit" class="btn btn-primary btn-lg" style="width: 100px; height: 50px;">Submit</button>
+			</div>
+		</div>
+</form>

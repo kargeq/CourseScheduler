@@ -1,0 +1,36 @@
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% bootstrap_messages %}
+{% load static %}
+
+<link href="{% static 'tutorMe/chat.css' %}" rel="stylesheet">
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+{% include "navStudent.html" %}
+
+{% block content %}
+<div class="form-center">
+    <form class="shadow p-3 mb-5 bg-body rounded">
+        <div class="card text-center">
+            <h5 class="card-header"> Direct Messages </h5>
+
+            <div class="card-body">
+
+                {% for chat in unique_names %}
+                <div class="card">
+
+                </div>
+<a style="margin:1em;" class="btn btn-primary" style="color:white;" href="{% url 'StudentChat' chat student_name %}">
+    <span>{{ chat }} <i class="fa fa-commenting-o"></i></span>
+</a>
+                {% empty %}
+                <li class="list-group-item">No chats available</li>
+                {% endfor %}
+
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}
+

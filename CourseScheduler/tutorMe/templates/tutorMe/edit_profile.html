@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Profile</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+</head>
+<body>
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% bootstrap_messages %}
+
+{% if istutor %}
+{% include "nav.html" %}
+{% else %}
+{% include "navStudent.html" %}
+{% endif %}
+
+  <div class="container py-5">
+    <h1 class="text-center mb-4">Edit Profile</h1>
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <div class="card shadow">
+          <div class="card-body">
+            <form method="POST">
+              {% csrf_token %}
+              <div class="form-group mb-3">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" id="email" name="email" value="{{ user.email }}" readonly>
+              </div>
+              <div class="form-group mb-3">
+                <label for="first_name">First Name:</label>
+                <input type="text" class="form-control" id="first_name" name="first_name" value="{{ first }}" readonly>
+              </div>
+              <div class="form-group mb-3">
+                <label for="last_name">Last Name:</label>
+                <input type="text" class="form-control" id="last_name" name="last_name" value="{{ last }}" readonly>
+              </div>
+              <div class="form-group mb-3">
+                <label for="phone_number">Phone Number:</label>
+                <input type="text" class="form-control" id="phone_number" name="phone_number" value="{{ phone }}">
+              </div>
+              <div class="form-group mb-3">
+                <label for="preferred_contact">Preferred Contact Method:</label>
+                <select class="form-select" id="preferred_contact" name="preferred_contact">
+                  {% if contact == "phone" %}
+                  <option value="phone" selected>Phone</option>
+                  <option value="email">Email</option>
+                  {% else %}
+                  <option value="phone">Phone</option>
+                  <option value="email" selected>Email</option>
+                  {% endif %}
+                </select>
+              </div>
+              <div class="form-group mb-3">
+                <button type="submit" class="btn btn-primary">Save</button>
+                <a href="{% url 'profile' %}" class="btn btn-secondary">Cancel</a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% include "footer.html" %}
+</body>
+</html>

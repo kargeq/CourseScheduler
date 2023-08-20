@@ -1,0 +1,93 @@
+<!DOCTYPE Html>
+<html>
+<title>Welcome Tutor</title>
+<head>
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+<body>
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% bootstrap_messages %}
+{% load static %}
+
+<link href="{% static 'tutorMe/homePage.css' %}" rel="stylesheet">
+<link href="{% static 'tutorMe/typeeffect.css' %}" rel="stylesheet">
+
+
+{% include "nav.html" %}
+
+
+<form action="/tutorMe/tutor/classes" class="form" method="POST">
+    {% csrf_token %}
+    <div class="container" style="font-family: 'Inter', sans-serif;">
+        <!-- /* Taken from */
+/* https://blog.hubspot.com/website/typing-animation-css#:~:text=How%20to%20Create%20a%20Typing%20Animation%20in%20CSS,cursor%20blink.%20...%205%20Center%20the%20text.%20 */
+/* sole purpose to have animation on home pages */ -->
+         <div class="cont">
+            <p class="typed" style="font-family: 'Inter', sans-serif; font-weight: bold; color: cornflowerblue;">
+                <text>Welcome to TutorMe.</text>
+                <text>Digitize your tutoring experience!</text>
+            </p>
+        </div>
+        <div class="row justify-content-center align-items-center" style="height: 60vh;">
+            <div class="col-lg-7">
+                <div class="input-group input-group-lg">
+
+                    <label for="searchBar"></label>
+                    <input class="form-control" id="searchBar"
+                           name="searchBar" placeholder="Search for a class"
+                           style="border-top-left-radius:20px; border-bottom-left-radius:20px;" type="text">
+                    <button class="btn btn-primary" style="border-top-right-radius:20px;
+                      border-bottom-right-radius:20px;" type="submit"><i class="fa fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div>
+                    <i class="fa fa-list-alt"> </i> &emsp;Find a class!
+                </div>
+                <div>
+
+                </div>
+            </div>
+            <div class="col">
+                <i class="fa fa-arrow-right"> </i>
+            </div>
+            <div class="col">
+                <div>
+                    <i class="fa fa-calendar-check-o"> </i> &emsp;Choose hourly rate and availability!
+                </div>
+                <div>
+
+                </div>
+            </div>
+            <div class="col">
+                <i class="fa fa-arrow-right"> </i>
+            </div>
+            <div class="col">
+                <i class="fa fa-clock-o"> </i> &emsp; Wait for students!
+            </div>
+            <div class="col">
+                <i class="fa fa-arrow-right"> </i>
+            </div>
+            <div class="col">
+                <i class="fa fa-check-square-o"> </i>&emsp;Finally accept the request!
+            </div>
+        </div>
+    </div>
+</form>
+
+
+{% include "footer.html" %}
+
+
+</body>
+
+</html>

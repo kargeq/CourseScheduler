@@ -1,0 +1,114 @@
+<!DOCTYPE Html>
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>Class List</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+
+<body>
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+
+{% bootstrap_messages %}
+{% include "nav.html" %}
+
+<div class="container" style="font-family: 'Inter', sans-serif;">
+
+    <h5 class="text-center pt-5" style="font-weight: bold;">
+        Currently Tutored Classes
+    </h5>
+
+    {% if not list %}
+    <!--If user does not have any classes that they are tutoring-->
+    <h1>You are Not Currently Tutoring any classes.</h1>
+    <p class="fw-bolder">Click <a href="/tutorMe/tutor">Here</a> to sign up for classes to tutor</p>
+
+    {%else%}
+
+    <div class="d-flex flex-wrap justify-content-evenly mt-3">
+        {% for Class in list %}
+        <div class="card shadow-sm m-2" style="max-width:25%">
+            <div class="card-body">
+                <h5 class="card-title">
+                    {{Class.0}}
+                </h5>
+                <div class="col">
+                    {% if Class.1 %}
+                    <a class="btn btn-primary" href="{% url 'edit' Class.0 %}" role="button"
+                       style="font-family: 'Inter', sans-serif;">
+                        <i class="fa fa-pencil">
+                        </i>
+                        Edit Times
+                    </a>
+                    {% else %}
+                    <a class="btn btn-primary" href="{% url 'schedule' Class.0 %}" role="button"
+                       style="font-family: 'Inter', sans-serif;">
+                        <i class="fa fa-pencil">
+                        </i>
+                        Add Times
+                    </a>
+                    {% endif %}
+                    <a class="btn btn-danger" data-bs-target="#exampleModal{{ forloop.counter }}" data-bs-toggle="modal"
+                       style="font-family: 'Inter', sans-serif;">
+                        <i class="fa fa-trash-o">
+                        </i>
+                        Remove
+                    </a>
+                    <div aria-hidden="true" aria-labelledby="exampleModalLabel{{ forloop.counter }}" class="modal fade"
+                         data-bs-backdrop="false" id="exampleModal{{ forloop.counter }}"
+                         tabindex="-1">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel" style="color:black;">Remove
+                                        {{Class.0}}</h5>
+                                    <button aria-label="Close" class="btn-close" data-bs-dismiss="modal"
+                                            type="button"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <h6 style="color:black">Are you sure you want to do this? This action is
+                                        undoable.</h6>
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close
+                                    </button>
+                                    <form action="{% url 'delete_item' Class.0 %}" method="POST">
+                                        {% csrf_token %}
+                                        <button class="btn btn-danger" type="submit">Delete</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+</div>
+
+<form action="/tutorMe/tutor" class="mt-3" method="get">
+    {% csrf_token %}
+    <div class="text-center">
+        <button class="btn btn-secondary" style="font-family: 'Inter', sans-serif;" type="submit">Return to Search <i
+                class="fa fa-chevron-right"></i></button>
+    </div>
+</form>
+{%endif%}
+
+
+{% include "footer.html" %}
+
+
+</body>
+
+</html>
